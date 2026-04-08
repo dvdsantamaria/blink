@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://blinkblinds.com.au/sitemap.xml
+
+# Crawl rate
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Allow images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+
+# Allow for AdsBot
+User-agent: AdsBot-Google
+Allow: /
+
+# Allow for Googlebot mobile
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Allow for Bing
+User-agent: Bingbot
+Allow: /

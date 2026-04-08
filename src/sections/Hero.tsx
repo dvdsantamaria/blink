@@ -11,38 +11,41 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-screen flex items-center overflow-hidden" id="hero">
+      {/* Background Image - Optimized for LCP */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/hero-bg.jpg"
           alt="Beautiful printed blinds in modern living room"
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          width={1920}
+          height={1080}
+          decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/50" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20">
         <div className="max-w-2xl py-20 lg:py-32">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/5 rounded-full mb-6">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-slate-700">
-              Australian Made • 5 Year Warranty
-            </span>
-          </div>
+          {/* Local SEO Badge */}
+          <p className="text-sm font-medium text-slate-600 mb-6 animate-fade-in">
+            Australian Made • 5 Year Warranty • Alstonville Local Business
+          </p>
 
-          {/* Headline */}
+          {/* Headline - Optimized for conversational queries */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
-            Windows that{' '}
+            Custom Printed Blinds{' '}
             <span className="relative inline-block">
-              tell stories
+              Alstonville
               <svg
                 className="absolute -bottom-2 left-0 w-full"
                 viewBox="0 0 300 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
               >
                 <path
                   d="M2 8C50 4 100 2 150 4C200 6 250 8 298 4"
@@ -54,10 +57,17 @@ export function Hero() {
             </span>
           </h1>
 
-          {/* Description */}
-          <p className="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed max-w-lg">
-            Custom printed roller blinds that transform your space. From playful 
-            dinosaurs to serene coastlines, find the perfect design for every room.
+          {/* Description - Answer to common queries for SGE */}
+          <p className="text-lg sm:text-xl text-slate-600 mb-4 leading-relaxed max-w-lg">
+            Looking for <strong>custom printed blinds in Alstonville</strong>? BlinkBlinds 
+            transforms your windows with personalized roller blinds. From playful 
+            dinosaurs to serene coastlines, we create the perfect design for every room 
+            in your home.
+          </p>
+          
+          <p className="text-base text-slate-500 mb-8 max-w-lg">
+            Serving Ballina, Lismore, Byron Bay & Northern Rivers. FREE measure & quote. 
+            Call <a href="tel:1800676583" className="text-blue-600 hover:underline font-medium">1800 676 583</a>.
           </p>
 
           {/* CTAs */}
@@ -66,6 +76,7 @@ export function Hero() {
               onClick={scrollToProducts}
               size="lg"
               className="bg-slate-900 hover:bg-slate-800 text-base h-12 px-8 group"
+              aria-label="Shop custom blind collections"
             >
               Shop Collections
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -75,13 +86,14 @@ export function Hero() {
               variant="outline"
               size="lg"
               className="border-slate-300 hover:bg-slate-50 text-base h-12 px-8"
+              aria-label="See how custom blinds work"
             >
               <Play className="w-4 h-4 mr-2" />
               See How It Works
             </Button>
           </div>
 
-          {/* Trust Badges */}
+          {/* Trust Badges - E-E-A-T signals */}
           <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-slate-200">
             <div className="flex items-center gap-2">
               <div className="flex -space-x-2">
@@ -109,12 +121,23 @@ export function Hero() {
                     key={i}
                     className="w-4 h-4 text-amber-400 fill-current"
                     viewBox="0 0 20 20"
+                    aria-hidden="true"
                   >
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                   </svg>
                 ))}
               </div>
               <p className="text-sm text-slate-500">4.9/5 from 500+ reviews</p>
+            </div>
+            <div className="h-10 w-px bg-slate-200 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p className="font-semibold text-slate-900">Australian Made</p>
+                <p className="text-sm text-slate-500">Since 2019</p>
+              </div>
             </div>
           </div>
         </div>

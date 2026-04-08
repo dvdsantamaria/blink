@@ -37,8 +37,12 @@ export function Collections() {
               <div className="aspect-[4/3] lg:aspect-auto lg:h-full">
                 <img
                   src={collection.image}
-                  alt={collection.name}
+                  alt={`${collection.name} - Custom printed blinds collection`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading={index < 2 ? "eager" : "lazy"}
+                  width={800}
+                  height={600}
+                  decoding="async"
                 />
               </div>
 
