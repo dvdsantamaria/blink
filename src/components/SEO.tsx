@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // Company data from environment variables
 const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'Blinds & Tales';
 const COMPANY_PHONE = import.meta.env.VITE_COMPANY_PHONE || '1800 676 583';
-const APP_URL = import.meta.env.VITE_APP_URL || 'https://blinkblinds.com.au';
+const APP_URL = import.meta.env.VITE_APP_URL || 'https://blinkblinds-au.vercel.app';
 
 // Coordinates for 5B Lismore Road, Alstonville NSW 2477
 const LATITUDE = -28.8419;
@@ -19,8 +19,8 @@ interface SEOProps {
 }
 
 export function SEO({
-  title = `${COMPANY_NAME} | Custom Printed Blinds Alstonville & Northern Rivers`,
-  description = `Custom printed roller blinds in Alstonville, Ballina & Lismore. Australian made, 5-year warranty. FREE measure & quote. Shop nature, coastal, kids & sports designs. 1800 676 583`,
+  title = `${COMPANY_NAME} | Custom Printed Blinds Australia | FREE Delivery`,
+  description = `Custom printed roller blinds delivered Australia-wide. Australian made, 5-year warranty. FREE measure & quote. Shop nature, coastal, kids & sports designs. Order online or call 1800 676 583`,
   canonical = APP_URL,
   ogImage = `${APP_URL}/images/og-image.jpg`,
   noindex = false,
@@ -54,7 +54,7 @@ export function SEO({
       { name: 'format-detection', content: 'telephone=no' },
       // Local SEO
       { name: 'geo.region', content: 'AU-NSW' },
-      { name: 'geo.placename', content: 'Alstonville' },
+      { name: 'geo.placename', content: 'Australia' },
       { name: 'geo.position', content: `${LATITUDE};${LONGITUDE}` },
       { name: 'ICBM', content: `${LATITUDE}, ${LONGITUDE}` },
       // Author & Copyright
@@ -114,10 +114,10 @@ export function SEO({
       '@type': 'HomeAndConstructionBusiness',
       '@id': `${APP_URL}#business`,
       name: COMPANY_NAME,
-      description: 'Custom printed roller blinds and window coverings in Alstonville, Ballina & Northern Rivers. Australian made with 5-year warranty.',
+      description: 'Custom printed roller blinds and window coverings delivered Australia-wide. Australian made with 5-year warranty.',
       url: APP_URL,
       telephone: COMPANY_PHONE,
-      email: 'hello@blinkblinds.com.au',
+      email: 'hello@blindsandtales.com.au',
       priceRange: '$$',
       image: `${APP_URL}/images/hero-bg.jpg`,
       logo: `${APP_URL}/logo.png`,
@@ -149,14 +149,15 @@ export function SEO({
         },
       ],
       areaServed: [
-        { '@type': 'City', name: 'Alstonville' },
-        { '@type': 'City', name: 'Ballina' },
-        { '@type': 'City', name: 'Lismore' },
-        { '@type': 'City', name: 'Byron Bay' },
-        { '@type': 'City', name: 'Lennox Head' },
-        { '@type': 'City', name: 'Wollongbar' },
-        { '@type': 'City', name: 'Evans Head' },
-        { '@type': 'AdministrativeArea', name: 'Northern Rivers' },
+        { '@type': 'Country', name: 'Australia' },
+        { '@type': 'AdministrativeArea', name: 'New South Wales' },
+        { '@type': 'AdministrativeArea', name: 'Victoria' },
+        { '@type': 'AdministrativeArea', name: 'Queensland' },
+        { '@type': 'AdministrativeArea', name: 'South Australia' },
+        { '@type': 'AdministrativeArea', name: 'Western Australia' },
+        { '@type': 'AdministrativeArea', name: 'Tasmania' },
+        { '@type': 'AdministrativeArea', name: 'Northern Territory' },
+        { '@type': 'AdministrativeArea', name: 'Australian Capital Territory' },
       ],
       serviceType: [
         'Custom Printed Blinds',
@@ -185,12 +186,19 @@ export function SEO({
               description: 'In-home consultation and measurement',
             },
           },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Australia-Wide Delivery',
+              description: 'Fast shipping to all Australian states',
+            },
+          },
         ],
       },
       sameAs: [
-        'https://www.facebook.com/blinkblinds',
-        'https://www.instagram.com/blinkblinds',
-        'https://g.co/kgs/blinkblinds-alstonville',
+        'https://www.facebook.com/blindsandtales',
+        'https://www.instagram.com/blindsandtales',
       ],
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -253,8 +261,8 @@ export function SEO({
       url: APP_URL,
       logo: `${APP_URL}/logo.png`,
       sameAs: [
-        'https://www.facebook.com/blinkblinds',
-        'https://www.instagram.com/blinkblinds',
+        'https://www.facebook.com/blindsandtales',
+        'https://www.instagram.com/blindsandtales',
       ],
       contactPoint: {
         '@type': 'ContactPoint',
@@ -262,6 +270,7 @@ export function SEO({
         contactType: 'customer service',
         areaServed: 'AU',
         availableLanguage: ['English'],
+        contactOption: 'TollFree',
       },
     };
 
@@ -286,26 +295,26 @@ export function SEO({
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Do you offer custom printed blinds in Alstonville?',
+          name: 'Do you deliver custom printed blinds Australia-wide?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes! BlinkBlinds specializes in custom printed roller blinds in Alstonville and surrounding areas. We offer FREE measure and quote services, and all our blinds are Australian made with a 5-year warranty.',
+            text: 'Yes! Blinds & Tales delivers custom printed roller blinds to all states and territories across Australia. We offer FREE measure and quote services in select areas, and our blinds are Australian made with a comprehensive 5-year warranty. Shipping is available to Sydney, Melbourne, Brisbane, Perth, Adelaide, and everywhere in between.',
           },
         },
         {
           '@type': 'Question',
-          name: 'What areas do you service in the Northern Rivers?',
+          name: 'How much do custom printed blinds cost in Australia?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'We service Alstonville, Ballina, Lismore, Byron Bay, Lennox Head, Wollongbar, Evans Head, and the entire Northern Rivers region of NSW.',
+            text: 'Our custom printed roller blinds are competitively priced across Australia. Prices vary based on size, fabric choice, and design complexity. We offer FREE measure and quote services with no obligation. Contact us at 1800 676 583 for a personalized quote. We also offer payment plans and can work with most budgets. All quotes include professional measurement guidance, manufacturing, and delivery.',
           },
         },
         {
           '@type': 'Question',
-          name: 'How long does it take to get custom blinds installed?',
+          name: 'How long does delivery take for custom blinds in Australia?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'From measurement to installation, custom printed blinds typically take 2-3 weeks. We handle everything from design consultation to professional installation.',
+            text: 'From order confirmation to delivery, custom printed blinds typically take 2-3 weeks Australia-wide. This includes: 1) Order processing and design confirmation (1-2 days), 2) Manufacturing (10-14 days for Australian-made blinds), and 3) Shipping via trusted courier partners (2-7 days depending on location). Express shipping options available to Sydney, Melbourne, Brisbane, and Perth.',
           },
         },
         {
@@ -313,7 +322,7 @@ export function SEO({
           name: 'What types of blind designs do you offer?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'We offer nature & tropical, coastal living, kids & nursery, sports fan, wildlife, and pet-themed designs. All designs can be customized to match your decor.',
+            text: 'We offer an extensive range of custom printed blind designs including: Nature & Tropical (floral, jungle, botanical), Coastal Living (ocean, beach, nautical themes), Kids & Nursery (dinosaurs, space, animals, fairy tales), Sports Fan (NRL, AFL, soccer, cricket), Wildlife (native Australian animals, birds), and Pets (cats, dogs, custom pet portraits). Cannot find what you are looking for? We can print ANY design - just provide your image!',
           },
         },
         {
@@ -321,7 +330,7 @@ export function SEO({
           name: 'Do you provide a warranty on your blinds?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes! All our blinds come with a comprehensive 5-year warranty. We stand behind the quality of our Australian-made products.',
+            text: 'Yes! All our blinds come with a comprehensive 5-year warranty covering manufacturing defects, mechanism failures, and fabric issues. As an Australian-made product, we stand behind our quality. Our warranty includes: free repairs for defects, replacement of faulty components, and fabric replacement if there are print quality issues. We also offer after-warranty repair services at competitive rates.',
           },
         },
       ],
@@ -333,13 +342,25 @@ export function SEO({
       '@type': 'Product',
       name: 'Custom Printed Roller Blinds',
       image: `${APP_URL}/images/hero-bg.jpg`,
-      description: 'High-quality custom printed roller blinds for homes and businesses in Alstonville and Northern Rivers.',
+      description: 'High-quality custom printed roller blinds delivered Australia-wide for homes and businesses.',
       brand: { '@id': `${APP_URL}#organization` },
       offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'AUD',
         availability: 'https://schema.org/InStock',
         seller: { '@id': `${APP_URL}#business` },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'AUD',
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'AU',
+          },
+        },
       },
       aggregateRating: {
         '@type': 'AggregateRating',

@@ -18,16 +18,16 @@ const footerLinks = {
   services: [
     { name: 'Custom Printed Blinds', href: '#products' },
     { name: 'FREE Measure & Quote', href: '#contact' },
+    { name: 'Australia-Wide Delivery', href: '#contact' },
     { name: 'Blind Installation', href: '#how-it-works' },
-    { name: 'Blind Repairs', href: '#contact' },
     { name: 'Commercial Blinds', href: '#products' },
   ],
   locations: [
-    { name: 'Alstonville', href: '#contact' },
-    { name: 'Ballina', href: '#contact' },
-    { name: 'Lismore', href: '#contact' },
-    { name: 'Byron Bay', href: '#contact' },
-    { name: 'Northern Rivers', href: '#contact' },
+    { name: 'Sydney', href: '#contact' },
+    { name: 'Melbourne', href: '#contact' },
+    { name: 'Brisbane', href: '#contact' },
+    { name: 'Perth', href: '#contact' },
+    { name: 'Adelaide', href: '#contact' },
   ],
 };
 
@@ -61,13 +61,12 @@ export function Footer() {
               </span>
             </a>
             <p className="text-slate-400 text-sm mb-6 max-w-xs">
-              Custom printed roller blinds that transform your space. Australian 
-              made with love since 2019. Serving Alstonville, Ballina, Lismore & 
-              Northern Rivers.
+              Custom printed roller blinds delivered Australia-wide. Australian 
+              made with love since 2019. Sydney • Melbourne • Brisbane • Perth • Adelaide
             </p>
             <div className="flex gap-3">
               <a
-                href="https://facebook.com/blinkblinds"
+                href="https://facebook.com/blindsandtales"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all"
@@ -76,7 +75,7 @@ export function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com/blinkblinds"
+                href="https://instagram.com/blindsandtales"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-all"
@@ -85,7 +84,7 @@ export function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="mailto:hello@blinkblinds.com.au"
+                href="mailto:hello@blindsandtales.com.au"
                 className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-slate-700 transition-all"
                 aria-label="Email us"
               >
@@ -168,9 +167,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Service Areas */}
+          {/* Major Cities */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Service Areas</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Major Cities</h4>
             <ul className="space-y-3">
               {footerLinks.locations.map((link) => (
                 <li key={link.name}>
@@ -189,15 +188,6 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact Us</h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                <MapPin className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-400 text-sm">
-                  <span itemProp="streetAddress">5B Lismore Road</span><br />
-                  <span itemProp="addressLocality">Alstonville</span>,{' '}
-                  <span itemProp="addressRegion">NSW</span>{' '}
-                  <span itemProp="postalCode">2477</span>
-                </span>
-              </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-slate-400 flex-shrink-0" />
                 <a
@@ -211,12 +201,21 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-slate-400 flex-shrink-0" />
                 <a
-                  href="mailto:hello@blinkblinds.com.au"
+                  href="mailto:hello@blindsandtales.com.au"
                   className="text-slate-400 hover:text-white text-sm transition-colors"
                   itemProp="email"
                 >
-                  hello@blinkblinds.com.au
+                  hello@blindsandtales.com.au
                 </a>
+              </li>
+              <li className="flex items-start gap-3" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                <MapPin className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                <span className="text-slate-400 text-sm">
+                  <span itemProp="streetAddress">5B Lismore Road</span><br />
+                  <span itemProp="addressLocality">Alstonville</span>,{' '}
+                  <span itemProp="addressRegion">NSW</span>{' '}
+                  <span itemProp="postalCode">2477</span>
+                </span>
               </li>
             </ul>
             
@@ -257,13 +256,13 @@ export function Footer() {
               <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              FREE Measure & Quote
+              Australia-Wide Delivery
             </span>
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Local Family Business
+              Family Owned Business
             </span>
           </div>
         </div>
@@ -274,7 +273,7 @@ export function Footer() {
             © {new Date().getFullYear()} Blinds & Tales. All rights reserved. 
             <span className="hidden sm:inline"> | </span>
             <span className="block sm:inline mt-1 sm:mt-0">
-              5B Lismore Road, Alstonville NSW 2477 | 1800 676 583
+              Australian Made • Delivered Australia-Wide
             </span>
           </p>
           <div className="flex gap-6">

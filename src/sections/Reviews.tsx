@@ -104,7 +104,7 @@ export function Reviews() {
         {/* Trust Badges */}
         <div className="mt-16 flex flex-wrap justify-center gap-8 lg:gap-16">
           {[
-            { label: 'Australian Made', sublabel: 'Proudly local' },
+            { label: 'Australian Made', sublabel: 'Since 2019' },
             { label: '5 Year Warranty', sublabel: 'Peace of mind' },
             { label: 'Free Shipping', sublabel: 'Australia wide' },
             { label: 'Easy Returns', sublabel: '30 day policy' },

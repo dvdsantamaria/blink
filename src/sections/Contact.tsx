@@ -23,45 +23,18 @@ export function Contact() {
             Get In Touch
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">
-            Visit Our Showroom
+            Contact Us
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Come see our custom blind samples in person. Located in the heart of Alstonville, 
-            serving Ballina, Lismore, Byron Bay and the entire Northern Rivers region.
+            Ready to transform your windows? Get in touch for a FREE measure and quote 
+            or to discuss your custom blind project. We deliver Australia-wide.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            {/* Address */}
-            <div className="flex items-start gap-4" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-blue-600" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-slate-900 mb-1">Visit Us</h3>
-                <p className="text-slate-600" itemProp="streetAddress">
-                  {COMPANY_ADDRESS}
-                </p>
-                <p className="text-slate-600">
-                  <span itemProp="addressLocality">Alstonville</span>,{' '}
-                  <span itemProp="addressRegion">NSW</span>{' '}
-                  <span itemProp="postalCode">2477</span>
-                </p>
-                <meta itemProp="addressCountry" content="AU" />
-                <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=5B+Lismore+Road,+Alstonville+NSW+2477"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium mt-2"
-                >
-                  Get Directions <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-
-            {/* Phone */}
+            {/* Phone - Primary CTA */}
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center flex-shrink-0">
                 <Phone className="w-6 h-6 text-green-600" />
@@ -76,7 +49,7 @@ export function Contact() {
                   {COMPANY_PHONE}
                 </a>
                 <p className="text-slate-500 text-sm mt-1">
-                  Free call Australia-wide
+                  Free call Australia-wide. Mon-Fri 8am-5pm, Sat 9am-2pm AEST
                 </p>
               </div>
             </div>
@@ -89,11 +62,11 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Email Us</h3>
                 <a
-                  href="mailto:hello@blinkblinds.com.au"
+                  href="mailto:hello@blindsandtales.com.au"
                   className="text-slate-600 hover:text-blue-600 transition-colors"
                   itemProp="email"
                 >
-                  hello@blinkblinds.com.au
+                  hello@blindsandtales.com.au
                 </a>
                 <p className="text-slate-500 text-sm mt-1">
                   We reply within 24 hours
@@ -110,9 +83,7 @@ export function Contact() {
                 <h3 className="font-semibold text-slate-900 mb-1">Opening Hours</h3>
                 <div className="text-slate-600 space-y-1">
                   <p>
-                    <span itemProp="dayOfWeek" content="Monday Tuesday Wednesday Thursday Friday">
-                      Mon - Fri
-                    </span>:{' '}
+                    <span itemProp="dayOfWeek" content="Monday Tuesday Wednesday Thursday Friday">Mon - Fri</span>:{' '}
                     <time itemProp="opens" content="08:00">8:00 AM</time> -{' '}
                     <time itemProp="closes" content="17:00">5:00 PM</time>
                   </p>
@@ -121,18 +92,44 @@ export function Contact() {
                     <time itemProp="opens" content="09:00">9:00 AM</time> -{' '}
                     <time itemProp="closes" content="14:00">2:00 PM</time>
                   </p>
-                  <p className="text-slate-500">Sunday: Closed</p>
+                  <p className="text-slate-500">Sunday: Closed (AEST)</p>
                 </div>
               </div>
             </div>
 
-            {/* Service Areas */}
+            {/* Address */}
+            <div className="flex items-start gap-4" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-slate-900 mb-1">Our Location</h3>
+                <p className="text-slate-600 text-sm" itemProp="streetAddress">
+                  {COMPANY_ADDRESS}
+                </p>
+                <p className="text-slate-600 text-sm">
+                  <span itemProp="addressLocality">Alstonville</span>,{' '}
+                  <span itemProp="addressRegion">NSW</span>{' '}
+                  <span itemProp="postalCode">2477</span>
+                </p>
+                <meta itemProp="addressCountry" content="AU" />
+                <p className="text-slate-500 text-sm mt-1">
+                  Showroom visits by appointment
+                </p>
+              </div>
+            </div>
+
+            {/* Service Areas - National */}
             <div className="bg-slate-50 rounded-xl p-6">
-              <h3 className="font-semibold text-slate-900 mb-3">Areas We Service</h3>
+              <h3 className="font-semibold text-slate-900 mb-3">We Deliver Australia-Wide</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Alstonville • Ballina • Lismore • Byron Bay • Lennox Head • Wollongbar • 
-                Evans Head • Bangalow • Mullumbimby • Ocean Shores • Brunswick Heads • 
-                Northern Rivers Region
+                Sydney • Melbourne • Brisbane • Perth • Adelaide • Hobart • Darwin • Canberra • 
+                Newcastle • Wollongong • Gold Coast • Sunshine Coast • Geelong • Townsville • 
+                Cairns • Toowoomba • Ballarat • Bendigo • Albury • Launceston • Mackay • 
+                Rockhampton • Bunbury • Bundaberg • Coffs Harbour • Wagga Wagga • Hervey Bay • 
+                Mildura • Shepparton • Port Macquarie • Gladstone • Tamworth • Traralgon • 
+                Orange • Bowral • Nowra • Bathurst • Dubbo • Warrnambool • Kalgoorlie • 
+                Mount Gambier • Lismore • Grafton • Esperance • Port Lincoln • Broome
               </p>
             </div>
 
@@ -166,14 +163,14 @@ export function Contact() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title={`${COMPANY_NAME} Location - 5B Lismore Road, Alstonville`}
+              title={`${COMPANY_NAME} Location`}
               className="absolute inset-0"
               itemProp="hasMap"
             />
             {/* Map Overlay with CTA */}
             <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
               <p className="text-sm text-slate-600 mb-2">
-                Need directions to our showroom?
+                Our HQ is in regional NSW, but we deliver to every corner of Australia
               </p>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=5B+Lismore+Road,+Alstonville+NSW+2477"

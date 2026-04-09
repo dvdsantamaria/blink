@@ -30,16 +30,16 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20">
         <div className="max-w-2xl py-20 lg:py-32">
-          {/* Local SEO Badge */}
+          {/* Value Proposition Badge */}
           <p className="text-sm font-medium text-slate-600 mb-6 animate-fade-in">
-            Australian Made • 5 Year Warranty • Alstonville Local Business
+            Australian Made • 5 Year Warranty • FREE Australia-Wide Delivery
           </p>
 
-          {/* Headline - Optimized for conversational queries */}
+          {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
             Custom Printed Blinds{' '}
             <span className="relative inline-block">
-              Alstonville
+              Australia
               <svg
                 className="absolute -bottom-2 left-0 w-full"
                 viewBox="0 0 300 12"
@@ -57,17 +57,17 @@ export function Hero() {
             </span>
           </h1>
 
-          {/* Description - Answer to common queries for SGE */}
+          {/* Description */}
           <p className="text-lg sm:text-xl text-slate-600 mb-4 leading-relaxed max-w-lg">
-            Looking for <strong>custom printed blinds in Alstonville</strong>? Blinds & Tales 
-            transforms your windows with personalized roller blinds. From playful 
-            dinosaurs to serene coastlines, we create the perfect design for every room 
-            in your home.
+            Transform your windows with <strong>custom printed roller blinds</strong> delivered 
+            Australia-wide. From playful dinosaurs to serene coastlines, we create the perfect 
+            design for every room in your home.
           </p>
           
           <p className="text-base text-slate-500 mb-8 max-w-lg">
-            Serving Ballina, Lismore, Byron Bay & Northern Rivers. FREE measure & quote. 
-            Call <a href="tel:1800676583" className="text-blue-600 hover:underline font-medium">1800 676 583</a>.
+            Sydney • Melbourne • Brisbane • Perth • Adelaide • Hobart • Darwin • Canberra. 
+            FREE measure & quote available. Call{' '}
+            <a href="tel:1800676583" className="text-blue-600 hover:underline font-medium">1800 676 583</a>.
           </p>
 
           {/* CTAs */}
