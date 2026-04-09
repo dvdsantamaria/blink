@@ -58,6 +58,10 @@ export function ProductDetail() {
       price: product.price,
       image: product.images[0] || '',
       category: product.category.name,
+      collection: product.category.slug,
+      rating: specs.rating ? parseFloat(specs.rating) : 4.5,
+      reviews: specs.reviews ? parseInt(specs.reviews, 10) : 10,
+      inStock: product.in_stock,
     }, quantity, selectedSize, selectedColor);
     
     toast.success(`${product.name} added to cart!`);
@@ -92,9 +96,9 @@ export function ProductDetail() {
   }
 
   const specs = product.specifications || {};
-  const sizes = specs.sizes || [];
-  const colors = specs.colors || [];
-  const features = product.tags || [];
+  const sizes: string[] = Array.isArray(specs.sizes) ? specs.sizes : [];
+  const colors: string[] = Array.isArray(specs.colors) ? specs.colors : [];
+  const features: string[] = Array.isArray(product.tags) ? product.tags : [];
   const rating = specs.rating ? parseFloat(specs.rating) : 4.5;
   const reviews = specs.reviews ? parseInt(specs.reviews, 10) : 10;
 
