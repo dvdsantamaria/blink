@@ -15,8 +15,8 @@ export function Hero() {
       {/* Background Image - Optimized for LCP */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-bg.jpg"
-          alt="Beautiful printed blinds in modern living room"
+          src="/images/collection-nature.jpg"
+          alt="Vibrant tropical parrot printed blinds - Custom printed blinds Australia"
           className="w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
@@ -24,22 +24,25 @@ export function Hero() {
           height={1080}
           decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20 pt-20">
         <div className="max-w-2xl py-20 lg:py-32">
           {/* Value Proposition Badge */}
-          <p className="text-sm font-medium text-slate-600 mb-6 animate-fade-in">
-            Australian Made • 5 Year Warranty • FREE Australia-Wide Delivery
-          </p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mb-6">
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            <span className="text-sm font-semibold text-white">
+              Australian Made • 5 Year Warranty • FREE Delivery
+            </span>
+          </div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
-            Custom Printed Blinds{' '}
-            <span className="relative inline-block">
-              Australia
+            Custom Printed{' '}
+            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500">
+              Blinds
               <svg
                 className="absolute -bottom-2 left-0 w-full"
                 viewBox="0 0 300 12"
@@ -49,7 +52,7 @@ export function Hero() {
               >
                 <path
                   d="M2 8C50 4 100 2 150 4C200 6 250 8 298 4"
-                  stroke="#fbbf24"
+                  stroke="#14b8a6"
                   strokeWidth="4"
                   strokeLinecap="round"
                 />
@@ -75,7 +78,7 @@ export function Hero() {
             <Button
               onClick={scrollToProducts}
               size="lg"
-              className="bg-slate-900 hover:bg-slate-800 text-base h-12 px-8 group"
+              className="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 text-white text-base h-12 px-8 group shadow-lg shadow-emerald-500/25"
               aria-label="Shop custom blind collections"
             >
               Shop Collections
@@ -85,7 +88,7 @@ export function Hero() {
               onClick={scrollToHowItWorks}
               variant="outline"
               size="lg"
-              className="border-slate-300 hover:bg-slate-50 text-base h-12 px-8"
+              className="border-2 border-slate-300 hover:border-emerald-500 hover:text-emerald-600 text-base h-12 px-8 transition-colors"
               aria-label="See how custom blinds work"
             >
               <Play className="w-4 h-4 mr-2" />
