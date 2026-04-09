@@ -28,9 +28,9 @@ function transformProduct(apiProduct: ProductWithCategory): Product {
     rating: specs.rating ? parseFloat(specs.rating) : 4.5,
     reviews: specs.reviews ? parseInt(specs.reviews, 10) : 10,
     inStock: apiProduct.in_stock,
-    sizes: specs.sizes ? specs.sizes.split(',').map((s: string) => s.trim()) : [],
-    colors: specs.colors ? specs.colors.split(',').map((c: string) => c.trim()) : [],
-    features: specs.features ? specs.features.split(',').map((f: string) => f.trim()) : [],
+    sizes: Array.isArray(specs.sizes) ? specs.sizes : [],
+    colors: Array.isArray(specs.colors) ? specs.colors : [],
+    features: Array.isArray(specs.features) ? specs.features : (apiProduct.tags || []),
   };
 }
 
