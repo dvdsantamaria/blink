@@ -1,7 +1,7 @@
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'BlinkBlinds';
+const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'Blinds & Tales';
 const COMPANY_ADDRESS = import.meta.env.VITE_COMPANY_ADDRESS || '5B Lismore Road, Alstonville';
 const COMPANY_PHONE = import.meta.env.VITE_COMPANY_PHONE || '1800 676 583';
 

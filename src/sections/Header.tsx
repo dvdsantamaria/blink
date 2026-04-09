@@ -53,10 +53,10 @@ export function Header() {
             }}
           >
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-              <span className="text-white font-bold text-sm">BB</span>
+              <span className="text-white font-bold text-sm">BT</span>
             </div>
             <span className="font-semibold text-slate-900 text-lg tracking-tight">
-              BlinkBlinds
+              Blinds & Tales
             </span>
           </a>
 

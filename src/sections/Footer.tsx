@@ -43,7 +43,7 @@ export function Footer() {
 
   return (
     <footer className="bg-slate-900 text-white pt-16 lg:pt-20 pb-8" itemScope itemType="https://schema.org/LocalBusiness">
-      <meta itemProp="name" content="BlinkBlinds" />
+      <meta itemProp="name" content="Blinds & Tales" />
       <meta itemProp="telephone" content="1800 676 583" />
       <meta itemProp="priceRange" content="$$" />
       
@@ -54,10 +54,10 @@ export function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-slate-900 font-bold">BB</span>
+                <span className="text-slate-900 font-bold">BT</span>
               </div>
               <span className="font-semibold text-white text-xl">
-                BlinkBlinds
+                Blinds & Tales
               </span>
             </a>
             <p className="text-slate-400 text-sm mb-6 max-w-xs">
@@ -271,7 +271,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            © {new Date().getFullYear()} BlinkBlinds. All rights reserved. 
+            © {new Date().getFullYear()} Blinds & Tales. All rights reserved. 
             <span className="hidden sm:inline"> | </span>
             <span className="block sm:inline mt-1 sm:mt-0">
               5B Lismore Road, Alstonville NSW 2477 | 1800 676 583

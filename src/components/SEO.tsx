@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 // Company data from environment variables
-const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'BlinkBlinds';
+const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || 'Blinds & Tales';
 const COMPANY_PHONE = import.meta.env.VITE_COMPANY_PHONE || '1800 676 583';
 const APP_URL = import.meta.env.VITE_APP_URL || 'https://blinkblinds.com.au';
 

@@ -4,7 +4,7 @@ import { ChevronDown, Plus, Minus } from 'lucide-react';
 const faqs = [
   {
     question: 'Do you offer custom printed blinds in Alstonville?',
-    answer: `Yes! BlinkBlinds specializes in custom printed roller blinds in Alstonville and throughout the Northern Rivers region. Our showroom is located at 5B Lismore Road, Alstonville. We offer FREE in-home measure and quote services, and all our blinds are Australian made with a comprehensive 5-year warranty. Whether you're in Ballina, Lismore, Byron Bay, or surrounding areas, we can help transform your windows with personalized designs.`,
+    answer: `Yes! Blinds & Tales specializes in custom printed roller blinds in Alstonville and throughout the Northern Rivers region. Our showroom is located at 5B Lismore Road, Alstonville. We offer FREE in-home measure and quote services, and all our blinds are Australian made with a comprehensive 5-year warranty. Whether you're in Ballina, Lismore, Byron Bay, or surrounding areas, we can help transform your windows with personalized designs.`,
     category: 'Location',
   },
   {
@@ -48,8 +48,8 @@ const faqs = [
     category: 'Repairs',
   },
   {
-    question: 'What makes BlinkBlinds different from other blind companies?',
-    answer: `BlinkBlinds stands out because: 1) We specialize in CUSTOM PRINTED designs - unlimited options, 2) We're LOCAL to Alstonville with a physical showroom you can visit, 3) Australian made with 5-year warranty, 4) FREE measure and quote with no pressure sales, 5) Personal service from a family-owned business, 6) Fast turnaround times (2-3 weeks), 7) Full service from design to installation, 8) We service the entire Northern Rivers region. Read our 500+ 5-star reviews to see why customers love us!`,
+    question: 'What makes Blinds & Tales different from other blind companies?',
+    answer: `Blinds & Tales stands out because: 1) We specialize in CUSTOM PRINTED designs - unlimited options, 2) We're LOCAL to Alstonville with a physical showroom you can visit, 3) Australian made with 5-year warranty, 4) FREE measure and quote with no pressure sales, 5) Personal service from a family-owned business, 6) Fast turnaround times (2-3 weeks), 7) Full service from design to installation, 8) We service the entire Northern Rivers region. Read our 500+ 5-star reviews to see why customers love us!`,
     category: 'About Us',
   },
 ];
@@ -161,7 +161,7 @@ export function FAQ() {
               Custom Printed Blinds in Alstonville & Northern Rivers
             </h3>
             <p className="text-slate-600 leading-relaxed mb-4">
-              BlinkBlinds is your local expert for <strong>custom printed roller blinds in Alstonville</strong>, 
+              Blinds & Tales is your local expert for <strong>custom printed roller blinds in Alstonville</strong>, 
               Ballina, Lismore, and throughout the Northern Rivers region. Our family-owned business 
               has been transforming homes across NSW since 2019 with unique, personalized window coverings 
               that reflect your style and personality.

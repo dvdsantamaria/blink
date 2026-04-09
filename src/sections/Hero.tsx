@@ -59,7 +59,7 @@ export function Hero() {
 
           {/* Description - Answer to common queries for SGE */}
           <p className="text-lg sm:text-xl text-slate-600 mb-4 leading-relaxed max-w-lg">
-            Looking for <strong>custom printed blinds in Alstonville</strong>? BlinkBlinds 
+            Looking for <strong>custom printed blinds in Alstonville</strong>? Blinds & Tales 
             transforms your windows with personalized roller blinds. From playful 
             dinosaurs to serene coastlines, we create the perfect design for every room 
             in your home.
