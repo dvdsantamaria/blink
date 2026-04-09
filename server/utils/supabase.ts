@@ -1,14 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.SUPABASE_URL || 'https://wpxyteguyifhcmogouis.supabase.co';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'REMOVED_SERVICE_KEY';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || 'REMOVED_ANON_KEY';
+const supabaseUrl = process.env.SUPABASE_URL || '';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
 
 // Check if credentials are configured
 const hasCredentials = supabaseUrl && supabaseServiceKey;
 
 if (!hasCredentials) {
-  console.warn('⚠️  Supabase credentials not configured. Using mock data.');
+  console.warn('⚠️  Supabase credentials not configured. Check your .env file.');
 }
 
 // Client with service role for admin operations (bypasses RLS)
@@ -28,11 +28,13 @@ export const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
 });
 
 // Test connection
-supabaseAdmin.from('categories').select('*', { count: 'exact', head: true })
-  .then(({ error }) => {
-    if (error) {
-      console.error('❌ Supabase connection failed:', error.message);
-    } else {
-      console.log('✅ Supabase connected successfully');
-    }
-  });
+if (hasCredentials) {
+  supabaseAdmin.from('categories').select('*', { count: 'exact', head: true })
+    .then(({ error }) => {
+      if (error) {
+        console.error('❌ Supabase connection failed:', error.message);
+      } else {
+        console.log('✅ Supabase connected successfully');
+      }
+    });
+}
