@@ -53,10 +53,8 @@ class ApiService {
   // Auth
   async login(email: string, password: string) {
     const data = await this.request<{
-      token?: string;
-      user?: { id: string; email: string; role: string };
-      hash?: string;
-      message?: string;
+      token: string;
+      user: { id: string; email: string; role: string };
     }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -69,8 +67,16 @@ class ApiService {
     return data;
   }
 
-  logout() {
-    this.clearToken();
+  async logout() {
+    try {
+      await this.request('/auth/logout', { method: 'POST' });
+    } finally {
+      this.clearToken();
+    }
+  }
+
+  async getCurrentUser() {
+    return this.request<{ id: string; email: string; role: string }>('/auth/me');
   }
 
   isAuthenticated(): boolean {

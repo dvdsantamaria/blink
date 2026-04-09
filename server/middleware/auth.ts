@@ -1,26 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { JWTPayload } from '../types';
+import { supabaseAdmin } from '../utils/supabase';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: JWTPayload;
-    }
-  }
-}
-
-export const generateToken = (payload: JWTPayload): string => {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' });
-};
-
-export const verifyToken = (token: string): JWTPayload => {
-  return jwt.verify(token, JWT_SECRET) as JWTPayload;
-};
-
-export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+// Verify JWT token from Supabase Auth
+export const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
     
@@ -30,17 +12,28 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = verifyToken(token);
     
-    req.user = decoded;
+    // Verify token with Supabase
+    const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+    
+    if (error || !user) {
+      res.status(401).json({ error: 'Invalid or expired token' });
+      return;
+    }
+
+    // Attach user to request
+    (req as any).user = user;
     next();
   } catch (error) {
-    res.status(401).json({ error: 'Invalid or expired token' });
+    res.status(401).json({ error: 'Authentication failed' });
   }
 };
 
+// Check if user has admin role
 export const adminOnly = (req: Request, res: Response, next: NextFunction): void => {
-  if (!req.user || req.user.role !== 'admin') {
+  const user = (req as any).user;
+  
+  if (!user || user.user_metadata?.role !== 'admin') {
     res.status(403).json({ error: 'Admin access required' });
     return;
   }

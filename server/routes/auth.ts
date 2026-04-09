@@ -1,14 +1,9 @@
 import { Router } from 'express';
-import bcrypt from 'bcryptjs';
-import { generateToken } from '../middleware/auth';
+import { supabaseAdmin } from '../utils/supabase';
 
 const router = Router();
 
-// Admin credentials (in production, use environment variables or database)
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@blindsandtales.com.au';
-const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '';
-
-// Simple login for single admin user
+// Login with Supabase Auth
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -17,56 +12,68 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'Email and password required' });
     }
 
-    // Check email
-    if (email !== ADMIN_EMAIL) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    // Verify password
-    // For first setup, if no hash exists, accept any password and return setup instructions
-    if (!ADMIN_PASSWORD_HASH) {
-      // Generate hash for the provided password (setup mode)
-      const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(password, salt);
-      
-      return res.status(200).json({
-        message: 'Setup mode: Use this hash as ADMIN_PASSWORD_HASH env var',
-        hash,
-        token: null,
-      });
-    }
-
-    const isValid = await bcrypt.compare(password, ADMIN_PASSWORD_HASH);
-    if (!isValid) {
-      return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    // Generate JWT
-    const token = generateToken({
-      userId: 'admin',
-      email: ADMIN_EMAIL,
-      role: 'admin',
+    // Authenticate with Supabase
+    const { data, error } = await supabaseAdmin.auth.signInWithPassword({
+      email,
+      password,
     });
+
+    if (error) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Check if user is admin
+    if (data.user?.user_metadata?.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
 
     res.json({
-      token,
+      token: data.session?.access_token,
       user: {
-        id: 'admin',
-        email: ADMIN_EMAIL,
-        role: 'admin',
+        id: data.user.id,
+        email: data.user.email,
+        role: data.user.user_metadata?.role,
       },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Verify token
-router.get('/verify', (req, res) => {
-  // The auth middleware would handle verification
-  // This endpoint just returns success if middleware passes
-  res.json({ valid: true });
+// Logout
+router.post('/logout', async (req, res) => {
+  try {
+    await supabaseAdmin.auth.signOut();
+    res.json({ message: 'Logged out successfully' });
+  } catch (error) {
+    res.json({ message: 'Logged out' });
+  }
+});
+
+// Get current user
+router.get('/me', async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+
+    if (error || !user) {
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+
+    res.json({
+      id: user.id,
+      email: user.email,
+      role: user.user_metadata?.role,
+    });
+  } catch (error) {
+    res.status(401).json({ error: 'Authentication failed' });
+  }
 });
 
 export default router;
