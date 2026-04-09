@@ -12,6 +12,9 @@ import { FAQ } from '@/sections/FAQ';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
 
+// Public pages
+import { ProductDetail } from '@/pages/ProductDetail';
+
 // Admin pages
 import { AdminLogin } from '@/pages/admin/Login';
 import { AdminLayout } from '@/pages/admin/Layout';
@@ -56,6 +59,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout />} />
+        <Route path="/product/:slug" element={<ProductDetail />} />
         
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
