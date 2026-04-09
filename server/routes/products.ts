@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { supabaseAdmin } from '../utils/supabase';
 import { authMiddleware, adminOnly } from '../middleware/auth';
+import { mockProducts, mockCategories, isMockMode } from '../middleware/mockData';
 
 const router = Router();
 
@@ -9,6 +10,30 @@ router.get('/', async (req, res) => {
   try {
     const { category, featured, search, in_stock, page = '1', limit = '20' } = req.query;
     
+    if (isMockMode) {
+      let products = mockProducts.map(p => ({
+        ...p,
+        category: mockCategories.find(c => c.id === p.category_id),
+      }));
+
+      if (category) {
+        products = products.filter(p => p.category_id === category);
+      }
+      if (featured === 'true') {
+        products = products.filter(p => p.featured);
+      }
+
+      return res.json({
+        products,
+        pagination: {
+          page: 1,
+          limit: products.length,
+          total: products.length,
+          totalPages: 1,
+        },
+      });
+    }
+
     let query = supabaseAdmin
       .from('products')
       .select('*, category:categories(*)', { count: 'exact' });
@@ -60,6 +85,15 @@ router.get('/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
     
+    if (isMockMode) {
+      const product = mockProducts.find(p => p.slug === slug);
+      if (!product) return res.status(404).json({ error: 'Product not found' });
+      return res.json({
+        ...product,
+        category: mockCategories.find(c => c.id === product.category_id),
+      });
+    }
+
     const { data: product, error } = await supabaseAdmin
       .from('products')
       .select('*, category:categories(*)')
@@ -83,6 +117,17 @@ router.get('/featured/list', async (req, res) => {
   try {
     const { limit = '6' } = req.query;
     
+    if (isMockMode) {
+      const products = mockProducts
+        .filter(p => p.featured)
+        .map(p => ({
+          ...p,
+          category: mockCategories.find(c => c.id === p.category_id),
+        }))
+        .slice(0, parseInt(limit as string, 10));
+      return res.json(products);
+    }
+
     const { data: products, error } = await supabaseAdmin
       .from('products')
       .select('*, category:categories(*)')
@@ -125,6 +170,32 @@ router.post('/', authMiddleware, adminOnly, async (req, res) => {
       });
     }
 
+    if (isMockMode) {
+      const newProduct = {
+        id: Date.now().toString(),
+        name,
+        slug,
+        description,
+        short_description,
+        price,
+        compare_price,
+        category_id,
+        images: images || [],
+        featured: featured || false,
+        in_stock: in_stock !== undefined ? in_stock : true,
+        sku,
+        tags: tags || [],
+        specifications: specifications || {},
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      mockProducts.push(newProduct);
+      return res.status(201).json({
+        ...newProduct,
+        category: mockCategories.find(c => c.id === category_id),
+      });
+    }
+
     const { data: product, error } = await supabaseAdmin
       .from('products')
       .insert([{
@@ -163,6 +234,16 @@ router.put('/:id', authMiddleware, adminOnly, async (req, res) => {
       updated_at: new Date().toISOString(),
     };
 
+    if (isMockMode) {
+      const index = mockProducts.findIndex(p => p.id === id);
+      if (index === -1) return res.status(404).json({ error: 'Product not found' });
+      mockProducts[index] = { ...mockProducts[index], ...updateData };
+      return res.json({
+        ...mockProducts[index],
+        category: mockCategories.find(c => c.id === mockProducts[index].category_id),
+      });
+    }
+
     const { data: product, error } = await supabaseAdmin
       .from('products')
       .update(updateData)
@@ -187,6 +268,13 @@ router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
   try {
     const { id } = req.params;
 
+    if (isMockMode) {
+      const index = mockProducts.findIndex(p => p.id === id);
+      if (index === -1) return res.status(404).json({ error: 'Product not found' });
+      mockProducts.splice(index, 1);
+      return res.json({ message: 'Product deleted successfully' });
+    }
+
     // Get product to delete images from storage
     const { data: product, error: fetchError } = await supabaseAdmin
       .from('products')
@@ -201,7 +289,7 @@ router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
       for (const imageUrl of product.images) {
         const path = imageUrl.split('/').pop();
         if (path) {
-          await supabaseAdmin.storage.from('products').remove([path]);
+          await supabaseAdmin.storage.from('blinds-and-tales').remove([path]);
         }
       }
     }
