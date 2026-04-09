@@ -6,8 +6,7 @@ import {
   LayoutDashboard, 
   Package, 
   Tags, 
-  LogOut,
-  ShoppingBag
+  LogOut
 } from 'lucide-react';
 
 export function AdminLayout() {

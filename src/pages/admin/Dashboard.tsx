@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '@/services/api';
 import { Package, Tags, ShoppingBag, TrendingUp } from 'lucide-react';
-import type { Product, Category } from '@/types/api';
+import type { ProductWithCategory } from '@/types/api';
 
 export function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -10,7 +10,7 @@ export function AdminDashboard() {
     featured: 0,
     inStock: 0,
   });
-  const [recentProducts, setRecentProducts] = useState<Product[]>([]);
+  const [recentProducts, setRecentProducts] = useState<ProductWithCategory[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,14 +27,14 @@ export function AdminDashboard() {
         api.getCategories(),
       ]);
 
-      const products = productsRes.products;
+      const products: ProductWithCategory[] = productsRes.products;
       const categories = categoriesRes;
 
       setStats({
         products: productsRes.pagination.total,
         categories: categories.length,
-        featured: products.filter((p: Product) => p.featured).length,
-        inStock: products.filter((p: Product) => p.in_stock).length,
+        featured: products.filter((p) => p.featured).length,
+        inStock: products.filter((p) => p.in_stock).length,
       });
 
       setRecentProducts(products.slice(0, 5));
@@ -107,7 +107,7 @@ export function AdminDashboard() {
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-medium text-slate-900 truncate">{product.name}</h3>
-                <p className="text-sm text-slate-500">{product.category?.name}</p>
+                <p className="text-sm text-slate-500">{(product as ProductWithCategory).category?.name}</p>
               </div>
               <div className="text-right">
                 <p className="font-medium text-slate-900">${product.price}</p>

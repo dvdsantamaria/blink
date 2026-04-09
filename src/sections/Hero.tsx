@@ -15,8 +15,8 @@ export function Hero() {
       {/* Background Image - Optimized for LCP */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/collection-nature.jpg"
-          alt="Vibrant tropical parrot printed blinds - Custom printed blinds Australia"
+          src="/images/collection-pets.jpg"
+          alt="Adorable pet-themed printed blinds - Custom printed blinds Australia"
           className="w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"

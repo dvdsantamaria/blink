@@ -174,7 +174,6 @@ export const api = new ApiService();
 // Import types
 import type { 
   Category, 
-  Product, 
   ProductWithCategory, 
   ProductsResponse, 
   CreateCategoryRequest, 

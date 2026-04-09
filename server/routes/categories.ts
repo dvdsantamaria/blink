@@ -1,17 +1,12 @@
 import { Router } from 'express';
 import { supabaseAdmin } from '../utils/supabase';
 import { authMiddleware, adminOnly } from '../middleware/auth';
-import { mockCategories, isMockMode } from '../middleware/mockData';
 
 const router = Router();
 
 // Public: Get all categories
 router.get('/', async (req, res) => {
   try {
-    if (isMockMode) {
-      return res.json(mockCategories);
-    }
-
     const { data: categories, error } = await supabaseAdmin
       .from('categories')
       .select('*')
@@ -19,7 +14,7 @@ router.get('/', async (req, res) => {
 
     if (error) throw error;
 
-    res.json(categories);
+    res.json(categories || []);
   } catch (error: any) {
     console.error('Error fetching categories:', error);
     res.status(500).json({ error: error.message });
@@ -31,12 +26,6 @@ router.get('/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
     
-    if (isMockMode) {
-      const category = mockCategories.find(c => c.slug === slug);
-      if (!category) return res.status(404).json({ error: 'Category not found' });
-      return res.json(category);
-    }
-
     const { data: category, error } = await supabaseAdmin
       .from('categories')
       .select('*')
@@ -64,22 +53,6 @@ router.post('/', authMiddleware, adminOnly, async (req, res) => {
       return res.status(400).json({ error: 'Name, slug and color are required' });
     }
 
-    if (isMockMode) {
-      const newCategory = {
-        id: Date.now().toString(),
-        name,
-        slug,
-        description,
-        image,
-        color,
-        sort_order: sort_order || 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      };
-      mockCategories.push(newCategory);
-      return res.status(201).json(newCategory);
-    }
-
     const { data: category, error } = await supabaseAdmin
       .from('categories')
       .insert([{ name, slug, description, image, color, sort_order: sort_order || 0 }])
@@ -100,13 +73,6 @@ router.put('/:id', authMiddleware, adminOnly, async (req, res) => {
   try {
     const { id } = req.params;
     const { name, slug, description, image, color, sort_order } = req.body;
-
-    if (isMockMode) {
-      const index = mockCategories.findIndex(c => c.id === id);
-      if (index === -1) return res.status(404).json({ error: 'Category not found' });
-      mockCategories[index] = { ...mockCategories[index], ...req.body, updated_at: new Date().toISOString() };
-      return res.json(mockCategories[index]);
-    }
 
     const { data: category, error } = await supabaseAdmin
       .from('categories')
@@ -131,13 +97,6 @@ router.put('/:id', authMiddleware, adminOnly, async (req, res) => {
 router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
   try {
     const { id } = req.params;
-
-    if (isMockMode) {
-      const index = mockCategories.findIndex(c => c.id === id);
-      if (index === -1) return res.status(404).json({ error: 'Category not found' });
-      mockCategories.splice(index, 1);
-      return res.json({ message: 'Category deleted successfully' });
-    }
 
     // Check if category has products
     const { count, error: countError } = await supabaseAdmin
