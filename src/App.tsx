@@ -16,6 +16,8 @@ import { Footer } from '@/sections/Footer';
 import { AdminLogin } from '@/pages/admin/Login';
 import { AdminLayout } from '@/pages/admin/Layout';
 import { AdminDashboard } from '@/pages/admin/Dashboard';
+import { Categories } from '@/pages/admin/Categories';
+import { AdminProducts } from '@/pages/admin/Products';
 
 // Public Layout
 function PublicLayout() {
@@ -60,7 +62,8 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<AdminDashboard />} />
-          {/* TODO: Add Products and Categories management pages */}
+          <Route path="categories" element={<Categories />} />
+          <Route path="products" element={<AdminProducts />} />
         </Route>
       </Routes>
     </BrowserRouter>

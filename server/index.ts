@@ -15,10 +15,34 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+const corsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow any localhost port for development
+    if (origin.startsWith('http://localhost:')) {
+      return callback(null, true);
+    }
+    
+    // Allow specific domains in production
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+      'https://blinds-and-tales.vercel.app',
+    ].filter(Boolean);
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 
 // Health check
